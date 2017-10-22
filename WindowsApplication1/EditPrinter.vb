@@ -163,6 +163,7 @@ Public Class EditPrinter
     End Sub
 
     Private Sub btnSaveClose_Click_1(sender As System.Object, e As System.EventArgs) Handles btnSaveClose.Click
+        FormSaveLayout(Globals.prtrIndex)
         Globals.CompletionCode = 0
         Globals.running = False
         WritePrinterFile()          ' save the changes
@@ -178,23 +179,30 @@ Public Class EditPrinter
     End Sub
 
     Private Sub cbLayoutSelected_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cbLayoutSelected.SelectedIndexChanged
+        Static Dim sema As Integer = -1
 
-        If Globals.running Then
+        sema += 1
+        If sema = 0 Then
 
-            ' selected layout is changing, so save the changes back to the globals
+            If Globals.running Then
 
-            If Globals.prtrIndex > -1 Then
+                ' selected layout is changing, so save the changes back to the globals
 
-                ' save the last name
-                FormSaveLayout(Globals.prtrIndex)
-                Globals.prtrName(Globals.prtrIndex) = tbprtrPrinterName.Text
+                If Globals.prtrIndex > -1 Then
+
+                    ' save the last name
+                    FormSaveLayout(Globals.prtrIndex)
+                    Globals.prtrName(Globals.prtrIndex) = tbprtrPrinterName.Text
+
+                End If
+
+                ' load the globals for the new selected index
+                FormLoadLayout(cbLayoutSelected.SelectedIndex)
 
             End If
 
-            ' load the globals for the new selected index
-            FormLoadLayout(cbLayoutSelected.SelectedIndex)
-
         End If
+        sema -= 1
 
     End Sub
 
@@ -486,6 +494,21 @@ Public Class EditPrinter
         If Globals.prtrPrtSize(index) = 8 Then
             rbPrtSiz8x12.Checked = True
         End If
+        If Globals.prtrPrtSize(index) = 9 Then
+            rbPrtSizGIF.Checked = True
+        End If
+        If Globals.prtrPrtSize(index) = 10 Then
+            rbPrtSizGIF.Checked = True
+        End If
+        If Globals.prtrPrtSize(index) = 11 Then
+            rbPrtSizGIF.Checked = True
+        End If
+        If Globals.prtrPrtSize(index) = 12 Then
+            rbPrtSizGIF.Checked = True
+        End If
+        If Globals.prtrPrtSize(index) = 13 Then
+            rbPrtSizGIF.Checked = True
+        End If
 
         tbprtrPrinterName.Text = Globals.prtrName(index)
         tbprtrXres.Text = Globals.prtrXres(index)
@@ -507,50 +530,70 @@ Public Class EditPrinter
 
         If rbPrtSiz3x5.Checked = True Then
             Globals.prtrPrtSize(index) = 1
-            Globals.prtrRatio(Globals.prtrMax) = 4
+            Globals.prtrRatio(index) = 4
         End If
         If rbPrtSiz2x6.Checked = True Then
             Globals.prtrPrtSize(index) = 2
-            Globals.prtrRatio(Globals.prtrMax) = 16
+            Globals.prtrRatio(index) = 16
         End If
         If rbPrtSiz4x6.Checked = True Then
             Globals.prtrPrtSize(index) = 3
-            Globals.prtrRatio(Globals.prtrMax) = 8
+            Globals.prtrRatio(index) = 8
         End If
         If rbPrtSiz5x7.Checked = True Then
             Globals.prtrPrtSize(index) = 4
-            Globals.prtrRatio(Globals.prtrMax) = 4
+            Globals.prtrRatio(index) = 4
         End If
         If rbPrtSiz6x8.Checked = True Then
             Globals.prtrPrtSize(index) = 5
-            Globals.prtrRatio(Globals.prtrMax) = 2
+            Globals.prtrRatio(index) = 2
         End If
         If rbPrtSiz6x9.Checked = True Then
             Globals.prtrPrtSize(index) = 6
-            Globals.prtrRatio(Globals.prtrMax) = 8
+            Globals.prtrRatio(index) = 8
         End If
         If rbPrtSiz8x10.Checked = True Then
             Globals.prtrPrtSize(index) = 7
-            Globals.prtrRatio(Globals.prtrMax) = 1
+            Globals.prtrRatio(index) = 1
         End If
         If rbPrtSiz8x12.Checked = True Then
             Globals.prtrPrtSize(index) = 8
-            Globals.prtrRatio(Globals.prtrMax) = 8
+            Globals.prtrRatio(index) = 8
+        End If
+        If rbPrtSizGIF.Checked = True Then
+            If Globals.prtrPrtSize(index) = 9 Then
+                Globals.prtrRatio(index) = 8
+            End If
+            If Globals.prtrPrtSize(index) = 10 Then
+                Globals.prtrRatio(index) = 8
+            End If
+            If Globals.prtrPrtSize(index) = 11 Then
+                Globals.prtrRatio(index) = 2
+            End If
+            If Globals.prtrPrtSize(index) = 12 Then
+                Globals.prtrRatio(index) = 2
+            End If
+            If Globals.prtrPrtSize(index) = 13 Then
+                Globals.prtrRatio(index) = 2
+            End If
         End If
 
-        Globals.prtrName(Globals.prtrMax) = tbprtrPrinterName.Text
-        Globals.prtrXres(Globals.prtrMax) = tbprtrXres.Text
-        Globals.prtrYres(Globals.prtrMax) = tbprtrYres.Text
-        Globals.prtrDPI(Globals.prtrMax) = tbprtrDPI.Text
-        Globals.prtrProfile(Globals.prtrMax) = tbprtrProfileName.Text
-        Globals.prtrSeconds(Globals.prtrMax) = tbprtrSeconds.Text
-        Globals.prtrHorzPCT(Globals.prtrMax) = tbprtrHorzPCT.Text
-        Globals.prtrVertPCT(Globals.prtrMax) = tbprtrVertPCT.Text
-        Globals.prtrHorzOffset(Globals.prtrMax) = tbprtrHorzOffset.Text
-        Globals.prtrVertOffset(Globals.prtrMax) = tbprtrVertOffset.Text
+        Globals.prtrName(index) = tbprtrPrinterName.Text
+        Globals.prtrXres(index) = tbprtrXres.Text
+        Globals.prtrYres(index) = tbprtrYres.Text
+        Globals.prtrDPI(index) = tbprtrDPI.Text
+        Globals.prtrProfile(index) = tbprtrProfileName.Text
+        Globals.prtrSeconds(index) = tbprtrSeconds.Text
+        Globals.prtrHorzPCT(index) = tbprtrHorzPCT.Text
+        Globals.prtrVertPCT(index) = tbprtrVertPCT.Text
+        Globals.prtrHorzOffset(index) = tbprtrHorzOffset.Text
+        Globals.prtrVertOffset(index) = tbprtrVertOffset.Text
 
     End Sub
 
+    Private Sub tbprtrHorzPCT_TextChanged(sender As System.Object, e As System.EventArgs) Handles tbprtrHorzPCT.TextChanged
+
+    End Sub
 End Class
 
 
@@ -558,7 +601,7 @@ End Class
 
 Public Class Globals
 
-    Public Shared Version As String = "Version 0.03"    ' Version string
+    Public Shared Version As String = "Version 0.04"    ' Version string
 
     ' the form instances
     'Public Shared fOpenLayout As OpenLayout

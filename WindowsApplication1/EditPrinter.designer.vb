@@ -61,6 +61,7 @@ Partial Class EditPrinter
         Me.cbLayoutSelected = New System.Windows.Forms.ComboBox()
         Me.NewLayout = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.rbPrtSizGIF = New System.Windows.Forms.RadioButton()
         Me.grpLayout.SuspendLayout()
         Me.gbPrintSize.SuspendLayout()
         Me.grpLayoutSelect.SuspendLayout()
@@ -102,9 +103,9 @@ Partial Class EditPrinter
         Me.grpLayout.Controls.Add(Me.grpLayoutSelect)
         Me.grpLayout.Controls.Add(Me.btnSave)
         Me.grpLayout.Controls.Add(Me.btnSaveClose)
-        Me.grpLayout.Location = New System.Drawing.Point(4, 12)
+        Me.grpLayout.Location = New System.Drawing.Point(8, 7)
         Me.grpLayout.Name = "grpLayout"
-        Me.grpLayout.Size = New System.Drawing.Size(570, 339)
+        Me.grpLayout.Size = New System.Drawing.Size(578, 362)
         Me.grpLayout.TabIndex = 1
         Me.grpLayout.TabStop = False
         Me.grpLayout.Text = "Printer Definition"
@@ -271,6 +272,7 @@ Partial Class EditPrinter
         '
         'gbPrintSize
         '
+        Me.gbPrintSize.Controls.Add(Me.rbPrtSizGIF)
         Me.gbPrintSize.Controls.Add(Me.rbPrtSiz8x12)
         Me.gbPrintSize.Controls.Add(Me.rbPrtSiz8x10)
         Me.gbPrintSize.Controls.Add(Me.rbPrtSiz6x9)
@@ -281,7 +283,7 @@ Partial Class EditPrinter
         Me.gbPrintSize.Controls.Add(Me.rbPrtSiz3x5)
         Me.gbPrintSize.Location = New System.Drawing.Point(23, 207)
         Me.gbPrintSize.Name = "gbPrintSize"
-        Me.gbPrintSize.Size = New System.Drawing.Size(144, 126)
+        Me.gbPrintSize.Size = New System.Drawing.Size(144, 137)
         Me.gbPrintSize.TabIndex = 34
         Me.gbPrintSize.TabStop = False
         Me.gbPrintSize.Text = "What Print Size?"
@@ -450,11 +452,22 @@ Partial Class EditPrinter
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'rbPrtSizGIF
+        '
+        Me.rbPrtSizGIF.AutoSize = True
+        Me.rbPrtSizGIF.Location = New System.Drawing.Point(44, 111)
+        Me.rbPrtSizGIF.Name = "rbPrtSizGIF"
+        Me.rbPrtSizGIF.Size = New System.Drawing.Size(42, 17)
+        Me.rbPrtSizGIF.TabIndex = 8
+        Me.rbPrtSizGIF.TabStop = True
+        Me.rbPrtSizGIF.Text = "GIF"
+        Me.rbPrtSizGIF.UseVisualStyleBackColor = True
+        '
         'EditPrinter
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(594, 363)
+        Me.ClientSize = New System.Drawing.Size(594, 379)
         Me.ControlBox = False
         Me.Controls.Add(Me.grpLayout)
         Me.Name = "EditPrinter"
@@ -506,5 +519,6 @@ Partial Class EditPrinter
     Friend WithEvents btnUpOneRow As System.Windows.Forms.Button
     Friend WithEvents lblprtrNameSize As System.Windows.Forms.Label
     Friend WithEvents tbprtrPrinterName As System.Windows.Forms.TextBox
+    Friend WithEvents rbPrtSizGIF As System.Windows.Forms.RadioButton
 
 End Class
