@@ -13,14 +13,11 @@ Imports System.Threading
 '"PrinterLayout.exe" is a Microsoft Visual Studio 2010 Visual Basic .NET
 'program that provides a user interface read/write the printer definition file.
 '
-' sample code
-'
-'http://www.codescratcher.com/windows-forms/read-and-write-csv-file-in-vb-net/
-'
-'
 Public Class EditPrinter
 
     Private Sub EditPrinter_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
+        Me.Text = Me.Text & "  " & Globals.Version
 
         ReadPrinterFile()                       ' load the printer definitions
 
@@ -141,6 +138,9 @@ Public Class EditPrinter
                 Globals.prtrVertPCT(i) = Globals.prtrVertPCT(i + 1)         ' arrCurrentRow(9)
                 Globals.prtrHorzOffset(i) = Globals.prtrHorzOffset(i + 1)   ' arrCurrentRow(10)
                 Globals.prtrVertOffset(i) = Globals.prtrVertOffset(i + 1)   ' arrCurrentRow(11)
+                Globals.prtrStartupSecs(i) = Globals.prtrStartupSecs(i + 1) ' arrCurrentRow(12)
+                Globals.prtrbestXres(i) = Globals.prtrbestXres(i + 1)       ' arrCurrentRow(13)
+                Globals.prtrbestYres(i) = Globals.prtrbestYres(i + 1)       ' arrCurrentRow(14)
 
             Next
 
@@ -321,6 +321,19 @@ Public Class EditPrinter
         i = Globals.prtrVertOffset(row1)
         Globals.prtrVertOffset(row1) = Globals.prtrVertOffset(row2)
         Globals.prtrVertOffset(row2) = i
+
+        i = Globals.prtrStartupSecs(row1)
+        Globals.prtrStartupSecs(row1) = Globals.prtrStartupSecs(row2)
+        Globals.prtrStartupSecs(row2) = i
+
+        i = Globals.prtrbestXres(row1)
+        Globals.prtrbestXres(row1) = Globals.prtrbestXres(row2)
+        Globals.prtrbestXres(row2) = i
+
+        i = Globals.prtrbestYres(row1)
+        Globals.prtrbestYres(row1) = Globals.prtrbestYres(row2)
+        Globals.prtrbestYres(row2) = i
+
     End Sub
 
     Private Sub _prtrreader(ByRef fname As String)
@@ -352,8 +365,12 @@ Public Class EditPrinter
                     ' load all the variable to make this layout work
                     Globals.prtrName(Globals.prtrMax) = arrCurrentRow(0)
                     Globals.prtrPrtSize(Globals.prtrMax) = arrCurrentRow(1)
+
                     Globals.prtrXres(Globals.prtrMax) = arrCurrentRow(2)
                     Globals.prtrYres(Globals.prtrMax) = arrCurrentRow(3)
+                    Globals.prtrbestXres(Globals.prtrMax) = Globals.prtrXres(Globals.prtrMax)
+                    Globals.prtrbestYres(Globals.prtrMax) = Globals.prtrYres(Globals.prtrMax)
+
                     Globals.prtrDPI(Globals.prtrMax) = arrCurrentRow(4)
                     Globals.prtrProfile(Globals.prtrMax) = arrCurrentRow(5)
                     Globals.prtrRatio(Globals.prtrMax) = arrCurrentRow(6)
@@ -362,6 +379,16 @@ Public Class EditPrinter
                     Globals.prtrVertPCT(Globals.prtrMax) = arrCurrentRow(9)
                     Globals.prtrHorzOffset(Globals.prtrMax) = arrCurrentRow(10)
                     Globals.prtrVertOffset(Globals.prtrMax) = arrCurrentRow(11)
+
+                    If arrCurrentRow.Count > 12 Then
+                        Globals.prtrStartupSecs(Globals.prtrMax) = arrCurrentRow(12)
+                    End If
+
+                    ' additional data with extended layout - bestX,BestY,unused,unused
+                    If arrCurrentRow.Count > 13 Then
+                        Globals.prtrbestXres(Globals.prtrMax) = arrCurrentRow(13)
+                        Globals.prtrbestYres(Globals.prtrMax) = arrCurrentRow(14)
+                    End If
 
                     cbLayoutSelected.Items.Add(Globals.prtrName(Globals.prtrMax))
 
@@ -373,7 +400,7 @@ Public Class EditPrinter
 
                 End If
 
-            End If
+                End If
 
         End While
 
@@ -428,8 +455,10 @@ Public Class EditPrinter
                 s = s + Globals.prtrHorzPCT(i).ToString + ","               ' arrCurrentRow(8)
                 s = s + Globals.prtrVertPCT(i).ToString + ","               ' arrCurrentRow(9)
                 s = s + Globals.prtrHorzOffset(i).ToString + ","            ' arrCurrentRow(10)
-                s = s + Globals.prtrVertOffset(i).ToString                  ' arrCurrentRow(11)
-
+                s = s + Globals.prtrVertOffset(i).ToString + ","            ' arrCurrentRow(11)
+                s = s + Globals.prtrStartupSecs(i).ToString + ","           ' arrCurrentRow(12)
+                s = s + Globals.prtrbestXres(i).ToString + ","              ' arrCurrentRow(13)
+                s = s + Globals.prtrbestYres(i).ToString + ",0,0"           ' arrCurrentRow(14),(15),(16)
                 file.WriteLine(s)
 
             Next
@@ -460,6 +489,9 @@ Public Class EditPrinter
         Globals.prtrVertPCT(index) = 100
         Globals.prtrHorzOffset(index) = 0
         Globals.prtrVertOffset(index) = 0
+        Globals.prtrStartupSecs(index) = 5
+        Globals.prtrbestXres(index) = 1800    ' X res
+        Globals.prtrbestYres(index) = 1200    ' Y res
 
     End Sub
 
@@ -520,6 +552,9 @@ Public Class EditPrinter
         tbprtrVertPCT.Text = Globals.prtrVertPCT(index)
         tbprtrHorzOffset.Text = Globals.prtrHorzOffset(index)
         tbprtrVertOffset.Text = Globals.prtrVertOffset(index)
+        tbprtrStartupSecs.Text = Globals.prtrStartupSecs(index)
+        tbBestFitX.Text = Globals.prtrbestXres(index)
+        tbBestFitY.Text = Globals.prtrbestYres(index)
 
     End Sub
 
@@ -588,10 +623,17 @@ Public Class EditPrinter
         Globals.prtrVertPCT(index) = tbprtrVertPCT.Text
         Globals.prtrHorzOffset(index) = tbprtrHorzOffset.Text
         Globals.prtrVertOffset(index) = tbprtrVertOffset.Text
+        Globals.prtrStartupSecs(index) = tbprtrStartupSecs.Text
+        Globals.prtrbestXres(index) = tbBestFitX.Text
+        Globals.prtrbestYres(index) = tbBestFitY.Text
 
     End Sub
 
     Private Sub tbprtrHorzPCT_TextChanged(sender As System.Object, e As System.EventArgs) Handles tbprtrHorzPCT.TextChanged
+
+    End Sub
+
+    Private Sub grpLayout_Enter(sender As System.Object, e As System.EventArgs) Handles grpLayout.Enter
 
     End Sub
 End Class
@@ -601,7 +643,7 @@ End Class
 
 Public Class Globals
 
-    Public Shared Version As String = "Version 0.04"    ' Version string
+    Public Shared Version As String = "Version 1.00"    ' Version string
 
     ' the form instances
     'Public Shared fOpenLayout As OpenLayout
@@ -641,6 +683,10 @@ Public Class Globals
     Public Shared prtrVertPCT(256) As Integer        ' vertical scale-to percentage
     Public Shared prtrHorzOffset(256) As Integer     ' horizontal offset by X pixels
     Public Shared prtrVertOffset(256) As Integer     ' vertical offset by X pixels
+    Public Shared prtrStartupSecs(256) As Integer    ' Startup Seconds
+    Public Shared prtrbestXres(256) As Integer       ' best fit width
+    Public Shared prtrbestYres(256) As Integer       ' best fit height
+
     'Public Shared prtrSetName(256) As String        ' action set name
     'Public Shared prtrFolder(256) As String         ' top level layout folder name such as '000'
     'Public Shared BkFgGifLayers(256) As Integer     ' number of image layers required by the gif

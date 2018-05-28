@@ -24,6 +24,12 @@ Partial Class EditPrinter
     Private Sub InitializeComponent()
         Me.btnSaveClose = New System.Windows.Forms.Button()
         Me.grpLayout = New System.Windows.Forms.GroupBox()
+        Me.lblprtrStartupSecs = New System.Windows.Forms.Label()
+        Me.tbprtrStartupSecs = New System.Windows.Forms.TextBox()
+        Me.lblBestFitY = New System.Windows.Forms.Label()
+        Me.lblbBestFitX = New System.Windows.Forms.Label()
+        Me.tbBestFitY = New System.Windows.Forms.TextBox()
+        Me.tbBestFitX = New System.Windows.Forms.TextBox()
         Me.lblprtrNameSize = New System.Windows.Forms.Label()
         Me.tbprtrPrinterName = New System.Windows.Forms.TextBox()
         Me.lblprtrProfileName = New System.Windows.Forms.Label()
@@ -45,6 +51,7 @@ Partial Class EditPrinter
         Me.tbprtrYres = New System.Windows.Forms.TextBox()
         Me.tbprtrXres = New System.Windows.Forms.TextBox()
         Me.gbPrintSize = New System.Windows.Forms.GroupBox()
+        Me.rbPrtSizGIF = New System.Windows.Forms.RadioButton()
         Me.rbPrtSiz8x12 = New System.Windows.Forms.RadioButton()
         Me.rbPrtSiz8x10 = New System.Windows.Forms.RadioButton()
         Me.rbPrtSiz6x9 = New System.Windows.Forms.RadioButton()
@@ -61,7 +68,6 @@ Partial Class EditPrinter
         Me.cbLayoutSelected = New System.Windows.Forms.ComboBox()
         Me.NewLayout = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
-        Me.rbPrtSizGIF = New System.Windows.Forms.RadioButton()
         Me.grpLayout.SuspendLayout()
         Me.gbPrintSize.SuspendLayout()
         Me.grpLayoutSelect.SuspendLayout()
@@ -69,7 +75,7 @@ Partial Class EditPrinter
         '
         'btnSaveClose
         '
-        Me.btnSaveClose.Location = New System.Drawing.Point(376, 297)
+        Me.btnSaveClose.Location = New System.Drawing.Point(394, 325)
         Me.btnSaveClose.Name = "btnSaveClose"
         Me.btnSaveClose.Size = New System.Drawing.Size(87, 23)
         Me.btnSaveClose.TabIndex = 0
@@ -78,6 +84,12 @@ Partial Class EditPrinter
         '
         'grpLayout
         '
+        Me.grpLayout.Controls.Add(Me.lblprtrStartupSecs)
+        Me.grpLayout.Controls.Add(Me.tbprtrStartupSecs)
+        Me.grpLayout.Controls.Add(Me.lblBestFitY)
+        Me.grpLayout.Controls.Add(Me.lblbBestFitX)
+        Me.grpLayout.Controls.Add(Me.tbBestFitY)
+        Me.grpLayout.Controls.Add(Me.tbBestFitX)
         Me.grpLayout.Controls.Add(Me.lblprtrNameSize)
         Me.grpLayout.Controls.Add(Me.tbprtrPrinterName)
         Me.grpLayout.Controls.Add(Me.lblprtrProfileName)
@@ -110,6 +122,54 @@ Partial Class EditPrinter
         Me.grpLayout.TabStop = False
         Me.grpLayout.Text = "Printer Definition"
         '
+        'lblprtrStartupSecs
+        '
+        Me.lblprtrStartupSecs.AutoSize = True
+        Me.lblprtrStartupSecs.Location = New System.Drawing.Point(437, 190)
+        Me.lblprtrStartupSecs.Name = "lblprtrStartupSecs"
+        Me.lblprtrStartupSecs.Size = New System.Drawing.Size(119, 13)
+        Me.lblprtrStartupSecs.TabIndex = 62
+        Me.lblprtrStartupSecs.Text = "Printer Startup Seconds"
+        '
+        'tbprtrStartupSecs
+        '
+        Me.tbprtrStartupSecs.Location = New System.Drawing.Point(376, 187)
+        Me.tbprtrStartupSecs.Name = "tbprtrStartupSecs"
+        Me.tbprtrStartupSecs.Size = New System.Drawing.Size(55, 20)
+        Me.tbprtrStartupSecs.TabIndex = 23
+        '
+        'lblBestFitY
+        '
+        Me.lblBestFitY.AutoSize = True
+        Me.lblBestFitY.Location = New System.Drawing.Point(437, 106)
+        Me.lblBestFitY.Name = "lblBestFitY"
+        Me.lblBestFitY.Size = New System.Drawing.Size(90, 13)
+        Me.lblBestFitY.TabIndex = 60
+        Me.lblBestFitY.Text = "Best Fit Y (height)"
+        '
+        'lblbBestFitX
+        '
+        Me.lblbBestFitX.AutoSize = True
+        Me.lblbBestFitX.Location = New System.Drawing.Point(437, 80)
+        Me.lblbBestFitX.Name = "lblbBestFitX"
+        Me.lblbBestFitX.Size = New System.Drawing.Size(86, 13)
+        Me.lblbBestFitX.TabIndex = 59
+        Me.lblbBestFitX.Text = "Best Fit X (width)"
+        '
+        'tbBestFitY
+        '
+        Me.tbBestFitY.Location = New System.Drawing.Point(376, 103)
+        Me.tbBestFitY.Name = "tbBestFitY"
+        Me.tbBestFitY.Size = New System.Drawing.Size(55, 20)
+        Me.tbBestFitY.TabIndex = 20
+        '
+        'tbBestFitX
+        '
+        Me.tbBestFitX.Location = New System.Drawing.Point(376, 77)
+        Me.tbBestFitX.Name = "tbBestFitX"
+        Me.tbBestFitX.Size = New System.Drawing.Size(55, 20)
+        Me.tbBestFitX.TabIndex = 19
+        '
         'lblprtrNameSize
         '
         Me.lblprtrNameSize.AutoSize = True
@@ -124,7 +184,7 @@ Partial Class EditPrinter
         Me.tbprtrPrinterName.Location = New System.Drawing.Point(30, 131)
         Me.tbprtrPrinterName.Name = "tbprtrPrinterName"
         Me.tbprtrPrinterName.Size = New System.Drawing.Size(274, 20)
-        Me.tbprtrPrinterName.TabIndex = 55
+        Me.tbprtrPrinterName.TabIndex = 6
         '
         'lblprtrProfileName
         '
@@ -140,61 +200,61 @@ Partial Class EditPrinter
         Me.tbprtrProfileName.Location = New System.Drawing.Point(30, 173)
         Me.tbprtrProfileName.Name = "tbprtrProfileName"
         Me.tbprtrProfileName.Size = New System.Drawing.Size(274, 20)
-        Me.tbprtrProfileName.TabIndex = 53
+        Me.tbprtrProfileName.TabIndex = 7
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(437, 209)
+        Me.Label7.Location = New System.Drawing.Point(437, 295)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(108, 13)
+        Me.Label7.Size = New System.Drawing.Size(116, 13)
         Me.Label7.TabIndex = 51
-        Me.Label7.Text = "vertical offset by pixel"
+        Me.Label7.Text = "Vertical Offset by pixels"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(437, 183)
+        Me.Label6.Location = New System.Drawing.Point(437, 269)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(124, 13)
+        Me.Label6.Size = New System.Drawing.Size(128, 13)
         Me.Label6.TabIndex = 50
-        Me.Label6.Text = "horizontal offset by pixels"
+        Me.Label6.Text = "Horizontal Offset by pixels"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(437, 157)
+        Me.Label5.Location = New System.Drawing.Point(437, 243)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(95, 13)
+        Me.Label5.Size = New System.Drawing.Size(98, 13)
         Me.Label5.TabIndex = 49
-        Me.Label5.Text = "vertical scaling pct"
+        Me.Label5.Text = "Vertical Scaling pct"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(437, 131)
+        Me.Label4.Location = New System.Drawing.Point(437, 217)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(106, 13)
+        Me.Label4.Size = New System.Drawing.Size(110, 13)
         Me.Label4.TabIndex = 48
-        Me.Label4.Text = "horizontal scaling pct"
+        Me.Label4.Text = "Horizontal Scaling pct"
         '
         'lblprtrSeconds
         '
         Me.lblprtrSeconds.AutoSize = True
-        Me.lblprtrSeconds.Location = New System.Drawing.Point(437, 105)
+        Me.lblprtrSeconds.Location = New System.Drawing.Point(437, 160)
         Me.lblprtrSeconds.Name = "lblprtrSeconds"
-        Me.lblprtrSeconds.Size = New System.Drawing.Size(90, 13)
+        Me.lblprtrSeconds.Size = New System.Drawing.Size(92, 13)
         Me.lblprtrSeconds.TabIndex = 47
-        Me.lblprtrSeconds.Text = "Seconds per print"
+        Me.lblprtrSeconds.Text = "Seconds Per Print"
         '
         'lblprtrDPI
         '
         Me.lblprtrDPI.AutoSize = True
-        Me.lblprtrDPI.Location = New System.Drawing.Point(437, 79)
+        Me.lblprtrDPI.Location = New System.Drawing.Point(437, 134)
         Me.lblprtrDPI.Name = "lblprtrDPI"
-        Me.lblprtrDPI.Size = New System.Drawing.Size(48, 13)
+        Me.lblprtrDPI.Size = New System.Drawing.Size(49, 13)
         Me.lblprtrDPI.TabIndex = 46
-        Me.lblprtrDPI.Text = "print DPI"
+        Me.lblprtrDPI.Text = "Print DPI"
         '
         'lblprtrYres
         '
@@ -216,59 +276,59 @@ Partial Class EditPrinter
         '
         'tbprtrVertOffset
         '
-        Me.tbprtrVertOffset.Location = New System.Drawing.Point(376, 206)
+        Me.tbprtrVertOffset.Location = New System.Drawing.Point(376, 292)
         Me.tbprtrVertOffset.Name = "tbprtrVertOffset"
         Me.tbprtrVertOffset.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrVertOffset.TabIndex = 43
+        Me.tbprtrVertOffset.TabIndex = 27
         '
         'tbprtrHorzOffset
         '
-        Me.tbprtrHorzOffset.Location = New System.Drawing.Point(376, 180)
+        Me.tbprtrHorzOffset.Location = New System.Drawing.Point(376, 266)
         Me.tbprtrHorzOffset.Name = "tbprtrHorzOffset"
         Me.tbprtrHorzOffset.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrHorzOffset.TabIndex = 42
+        Me.tbprtrHorzOffset.TabIndex = 26
         '
         'tbprtrVertPCT
         '
-        Me.tbprtrVertPCT.Location = New System.Drawing.Point(376, 154)
+        Me.tbprtrVertPCT.Location = New System.Drawing.Point(376, 240)
         Me.tbprtrVertPCT.Name = "tbprtrVertPCT"
         Me.tbprtrVertPCT.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrVertPCT.TabIndex = 40
+        Me.tbprtrVertPCT.TabIndex = 25
         '
         'tbprtrHorzPCT
         '
-        Me.tbprtrHorzPCT.Location = New System.Drawing.Point(376, 128)
+        Me.tbprtrHorzPCT.Location = New System.Drawing.Point(376, 214)
         Me.tbprtrHorzPCT.Name = "tbprtrHorzPCT"
         Me.tbprtrHorzPCT.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrHorzPCT.TabIndex = 39
+        Me.tbprtrHorzPCT.TabIndex = 24
         '
         'tbprtrSeconds
         '
-        Me.tbprtrSeconds.Location = New System.Drawing.Point(376, 102)
+        Me.tbprtrSeconds.Location = New System.Drawing.Point(376, 157)
         Me.tbprtrSeconds.Name = "tbprtrSeconds"
         Me.tbprtrSeconds.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrSeconds.TabIndex = 38
+        Me.tbprtrSeconds.TabIndex = 22
         '
         'tbprtrDPI
         '
-        Me.tbprtrDPI.Location = New System.Drawing.Point(376, 76)
+        Me.tbprtrDPI.Location = New System.Drawing.Point(376, 131)
         Me.tbprtrDPI.Name = "tbprtrDPI"
         Me.tbprtrDPI.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrDPI.TabIndex = 37
+        Me.tbprtrDPI.TabIndex = 21
         '
         'tbprtrYres
         '
         Me.tbprtrYres.Location = New System.Drawing.Point(376, 50)
         Me.tbprtrYres.Name = "tbprtrYres"
         Me.tbprtrYres.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrYres.TabIndex = 36
+        Me.tbprtrYres.TabIndex = 18
         '
         'tbprtrXres
         '
         Me.tbprtrXres.Location = New System.Drawing.Point(376, 24)
         Me.tbprtrXres.Name = "tbprtrXres"
         Me.tbprtrXres.Size = New System.Drawing.Size(55, 20)
-        Me.tbprtrXres.TabIndex = 35
+        Me.tbprtrXres.TabIndex = 17
         '
         'gbPrintSize
         '
@@ -288,13 +348,24 @@ Partial Class EditPrinter
         Me.gbPrintSize.TabStop = False
         Me.gbPrintSize.Text = "What Print Size?"
         '
+        'rbPrtSizGIF
+        '
+        Me.rbPrtSizGIF.AutoSize = True
+        Me.rbPrtSizGIF.Location = New System.Drawing.Point(44, 111)
+        Me.rbPrtSizGIF.Name = "rbPrtSizGIF"
+        Me.rbPrtSizGIF.Size = New System.Drawing.Size(42, 17)
+        Me.rbPrtSizGIF.TabIndex = 16
+        Me.rbPrtSizGIF.TabStop = True
+        Me.rbPrtSizGIF.Text = "GIF"
+        Me.rbPrtSizGIF.UseVisualStyleBackColor = True
+        '
         'rbPrtSiz8x12
         '
         Me.rbPrtSiz8x12.AutoSize = True
         Me.rbPrtSiz8x12.Location = New System.Drawing.Point(81, 88)
         Me.rbPrtSiz8x12.Name = "rbPrtSiz8x12"
         Me.rbPrtSiz8x12.Size = New System.Drawing.Size(54, 17)
-        Me.rbPrtSiz8x12.TabIndex = 7
+        Me.rbPrtSiz8x12.TabIndex = 15
         Me.rbPrtSiz8x12.TabStop = True
         Me.rbPrtSiz8x12.Text = "8 x 12"
         Me.rbPrtSiz8x12.UseVisualStyleBackColor = True
@@ -305,7 +376,7 @@ Partial Class EditPrinter
         Me.rbPrtSiz8x10.Location = New System.Drawing.Point(81, 65)
         Me.rbPrtSiz8x10.Name = "rbPrtSiz8x10"
         Me.rbPrtSiz8x10.Size = New System.Drawing.Size(54, 17)
-        Me.rbPrtSiz8x10.TabIndex = 6
+        Me.rbPrtSiz8x10.TabIndex = 14
         Me.rbPrtSiz8x10.TabStop = True
         Me.rbPrtSiz8x10.Text = "8 x 10"
         Me.rbPrtSiz8x10.UseVisualStyleBackColor = True
@@ -316,7 +387,7 @@ Partial Class EditPrinter
         Me.rbPrtSiz6x9.Location = New System.Drawing.Point(81, 42)
         Me.rbPrtSiz6x9.Name = "rbPrtSiz6x9"
         Me.rbPrtSiz6x9.Size = New System.Drawing.Size(48, 17)
-        Me.rbPrtSiz6x9.TabIndex = 5
+        Me.rbPrtSiz6x9.TabIndex = 13
         Me.rbPrtSiz6x9.TabStop = True
         Me.rbPrtSiz6x9.Text = "6 x 9"
         Me.rbPrtSiz6x9.UseVisualStyleBackColor = True
@@ -327,7 +398,7 @@ Partial Class EditPrinter
         Me.rbPrtSiz6x8.Location = New System.Drawing.Point(81, 19)
         Me.rbPrtSiz6x8.Name = "rbPrtSiz6x8"
         Me.rbPrtSiz6x8.Size = New System.Drawing.Size(48, 17)
-        Me.rbPrtSiz6x8.TabIndex = 4
+        Me.rbPrtSiz6x8.TabIndex = 12
         Me.rbPrtSiz6x8.TabStop = True
         Me.rbPrtSiz6x8.Text = "6 x 8"
         Me.rbPrtSiz6x8.UseVisualStyleBackColor = True
@@ -338,7 +409,7 @@ Partial Class EditPrinter
         Me.rbPrtSiz5x7.Location = New System.Drawing.Point(18, 88)
         Me.rbPrtSiz5x7.Name = "rbPrtSiz5x7"
         Me.rbPrtSiz5x7.Size = New System.Drawing.Size(48, 17)
-        Me.rbPrtSiz5x7.TabIndex = 3
+        Me.rbPrtSiz5x7.TabIndex = 11
         Me.rbPrtSiz5x7.TabStop = True
         Me.rbPrtSiz5x7.Text = "5 x 7"
         Me.rbPrtSiz5x7.UseVisualStyleBackColor = True
@@ -349,7 +420,7 @@ Partial Class EditPrinter
         Me.rbPrtSiz4x6.Location = New System.Drawing.Point(18, 65)
         Me.rbPrtSiz4x6.Name = "rbPrtSiz4x6"
         Me.rbPrtSiz4x6.Size = New System.Drawing.Size(45, 17)
-        Me.rbPrtSiz4x6.TabIndex = 2
+        Me.rbPrtSiz4x6.TabIndex = 10
         Me.rbPrtSiz4x6.TabStop = True
         Me.rbPrtSiz4x6.Text = "4x 6"
         Me.rbPrtSiz4x6.UseVisualStyleBackColor = True
@@ -360,7 +431,7 @@ Partial Class EditPrinter
         Me.rbPrtSiz2x6.Location = New System.Drawing.Point(18, 42)
         Me.rbPrtSiz2x6.Name = "rbPrtSiz2x6"
         Me.rbPrtSiz2x6.Size = New System.Drawing.Size(48, 17)
-        Me.rbPrtSiz2x6.TabIndex = 1
+        Me.rbPrtSiz2x6.TabIndex = 9
         Me.rbPrtSiz2x6.TabStop = True
         Me.rbPrtSiz2x6.Text = "2 x 6"
         Me.rbPrtSiz2x6.UseVisualStyleBackColor = True
@@ -371,17 +442,17 @@ Partial Class EditPrinter
         Me.rbPrtSiz3x5.Location = New System.Drawing.Point(18, 19)
         Me.rbPrtSiz3x5.Name = "rbPrtSiz3x5"
         Me.rbPrtSiz3x5.Size = New System.Drawing.Size(57, 17)
-        Me.rbPrtSiz3x5.TabIndex = 0
+        Me.rbPrtSiz3x5.TabIndex = 8
         Me.rbPrtSiz3x5.TabStop = True
         Me.rbPrtSiz3x5.Text = "3.5 x 5"
         Me.rbPrtSiz3x5.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(469, 297)
+        Me.btnCancel.Location = New System.Drawing.Point(487, 325)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancel.TabIndex = 33
+        Me.btnCancel.TabIndex = 29
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -401,11 +472,11 @@ Partial Class EditPrinter
         '
         'btnDNOneRow
         '
-        Me.btnDNOneRow.Location = New System.Drawing.Point(301, 22)
+        Me.btnDNOneRow.Location = New System.Drawing.Point(309, 22)
         Me.btnDNOneRow.Name = "btnDNOneRow"
-        Me.btnDNOneRow.Size = New System.Drawing.Size(19, 22)
-        Me.btnDNOneRow.TabIndex = 56
-        Me.btnDNOneRow.Text = "v"
+        Me.btnDNOneRow.Size = New System.Drawing.Size(25, 22)
+        Me.btnDNOneRow.TabIndex = 3
+        Me.btnDNOneRow.Text = "\/"
         Me.btnDNOneRow.UseVisualStyleBackColor = True
         '
         'DeleteThisLayout
@@ -413,7 +484,7 @@ Partial Class EditPrinter
         Me.DeleteThisLayout.Location = New System.Drawing.Point(151, 51)
         Me.DeleteThisLayout.Name = "DeleteThisLayout"
         Me.DeleteThisLayout.Size = New System.Drawing.Size(114, 23)
-        Me.DeleteThisLayout.TabIndex = 39
+        Me.DeleteThisLayout.TabIndex = 5
         Me.DeleteThisLayout.Text = "Delete this Print Def"
         Me.DeleteThisLayout.UseVisualStyleBackColor = True
         '
@@ -421,9 +492,9 @@ Partial Class EditPrinter
         '
         Me.btnUpOneRow.Location = New System.Drawing.Point(280, 22)
         Me.btnUpOneRow.Name = "btnUpOneRow"
-        Me.btnUpOneRow.Size = New System.Drawing.Size(19, 22)
-        Me.btnUpOneRow.TabIndex = 55
-        Me.btnUpOneRow.Text = "^"
+        Me.btnUpOneRow.Size = New System.Drawing.Size(25, 22)
+        Me.btnUpOneRow.TabIndex = 2
+        Me.btnUpOneRow.Text = "/\"
         Me.btnUpOneRow.UseVisualStyleBackColor = True
         '
         'cbLayoutSelected
@@ -432,36 +503,25 @@ Partial Class EditPrinter
         Me.cbLayoutSelected.Location = New System.Drawing.Point(6, 23)
         Me.cbLayoutSelected.Name = "cbLayoutSelected"
         Me.cbLayoutSelected.Size = New System.Drawing.Size(268, 21)
-        Me.cbLayoutSelected.TabIndex = 2
+        Me.cbLayoutSelected.TabIndex = 1
         '
         'NewLayout
         '
         Me.NewLayout.Location = New System.Drawing.Point(7, 51)
         Me.NewLayout.Name = "NewLayout"
         Me.NewLayout.Size = New System.Drawing.Size(114, 23)
-        Me.NewLayout.TabIndex = 35
+        Me.NewLayout.TabIndex = 4
         Me.NewLayout.Text = "New Print Def"
         Me.NewLayout.UseVisualStyleBackColor = True
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(295, 297)
+        Me.btnSave.Location = New System.Drawing.Point(313, 325)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnSave.TabIndex = 1
+        Me.btnSave.TabIndex = 28
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
-        '
-        'rbPrtSizGIF
-        '
-        Me.rbPrtSizGIF.AutoSize = True
-        Me.rbPrtSizGIF.Location = New System.Drawing.Point(44, 111)
-        Me.rbPrtSizGIF.Name = "rbPrtSizGIF"
-        Me.rbPrtSizGIF.Size = New System.Drawing.Size(42, 17)
-        Me.rbPrtSizGIF.TabIndex = 8
-        Me.rbPrtSizGIF.TabStop = True
-        Me.rbPrtSizGIF.Text = "GIF"
-        Me.rbPrtSizGIF.UseVisualStyleBackColor = True
         '
         'EditPrinter
         '
@@ -520,5 +580,11 @@ Partial Class EditPrinter
     Friend WithEvents lblprtrNameSize As System.Windows.Forms.Label
     Friend WithEvents tbprtrPrinterName As System.Windows.Forms.TextBox
     Friend WithEvents rbPrtSizGIF As System.Windows.Forms.RadioButton
+    Friend WithEvents lblBestFitY As System.Windows.Forms.Label
+    Friend WithEvents lblbBestFitX As System.Windows.Forms.Label
+    Friend WithEvents tbBestFitY As System.Windows.Forms.TextBox
+    Friend WithEvents tbBestFitX As System.Windows.Forms.TextBox
+    Friend WithEvents lblprtrStartupSecs As System.Windows.Forms.Label
+    Friend WithEvents tbprtrStartupSecs As System.Windows.Forms.TextBox
 
 End Class
